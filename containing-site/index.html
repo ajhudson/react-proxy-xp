@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hosting a React App in an iFrame</title>
+  </head>
+  <body>
+    <h1>Test to see if we can host react in an iFrame</h1>
+
+    <iframe id="react-app-frame"></iframe>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        /*  
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src", "http://localhost:3000");
+        iframe.setAttribute("referrerpolicy", "origin");
+        document.body.appendChild(iframe);
+        */
+
+        /*
+        fetch("http://localhost:3000/").then((resp) => {
+          resp.text().then((r) => console.log(r));
+        });
+        */
+
+        var f = document.getElementById("react-app-frame");
+
+        fetch("http://localhost:3000/")
+          .then((resp) => resp.text())
+          .then((txt) => {
+            f.setAttribute("srcdoc", txt);
+          });
+      });
+    </script>
+  </body>
+</html>
